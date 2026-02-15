@@ -1,17 +1,47 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Bucket Brigade"
+  description="Beautiful tools for curious minds and real musicians."
+>
+  <section class="hero">
+    <p class="eyebrow">Independent Apple software</p>
+    <h1>Bucket Brigade</h1>
+    <p class="lead">Beautiful tools for curious minds and real musicians.</p>
+  </section>
+
+  <section aria-label="Apps" class="app-grid">
+    <article class="card">
+      <img
+        class="app-icon"
+        src="/images/eye-yay/200x200bb-75.webp"
+        alt="Eye Yay app icon"
+        width="72"
+        height="72"
+      />
+      <h2>Eye Yay</h2>
+      <p class="card-subtitle">Public Domain Player</p>
+      <p class="platforms">iPhone · iPad · Mac · Apple TV</p>
+      <p>
+        A modern media player for the Internet Archive.
+        <br />
+        Free. No ads. No subscriptions. No tracking.
+      </p>
+      <a class="button" href="/eye-yay">Learn more</a>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <h2>Synthgarage</h2>
+        <span class="badge">COMING SOON</span>
+      </div>
+      <p class="card-subtitle">Universal Preset Librarian</p>
+      <p class="platforms">Mac · iPhone · iPad</p>
+      <p>Universal preset librarian for your hardware synths.</p>
+      <p class="tagline">Real musicians use presets.</p>
+      <a class="button" href="/synthgarage">Learn more</a>
+    </article>
+  </section>
+</BaseLayout>

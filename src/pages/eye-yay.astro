@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const familyScreenshots = [
+  {
+    src: '/images/eye-yay/screenshots/Family-light-1_6-1.png',
+    alt: 'Eye Yay family screenshot light mode'
+  },
+  {
+    src: '/images/eye-yay/screenshots/Family-dark-1_6-1.png',
+    alt: 'Eye Yay family screenshot dark mode'
+  }
+];
+---
+
+<BaseLayout
+  title="Eye Yay – Public Domain Player"
+  description="Modern media player for the Internet Archive. Free, no ads, no subscriptions."
+>
+  <section class="hero hero-compact">
+    <h1>Eye Yay</h1>
+    <p class="hero-subtitle">Public Domain Player</p>
+    <p class="platforms">iPhone · iPad · Mac · Apple TV</p>
+    <p class="tagline">FREE — no ads, no subscriptions, no tracking.</p>
+    <p class="lead">
+      Eye Yay gives you a beautiful, distraction-free way to explore historic audio and video
+      collections made available by open online archives. Enjoy classic recordings,
+      documentaries, films, radio plays, and other cultural works that have entered the public
+      domain or are freely shared by their creators.
+    </p>
+  </section>
+
+  <section aria-label="Eye Yay family screenshots">
+    <div class="carousel" data-carousel>
+      <div class="carousel-track" data-carousel-track>
+        {familyScreenshots.map((shot, index) => (
+          <figure class="carousel-slide" data-carousel-slide>
+            <img
+              src={shot.src}
+              alt={shot.alt}
+              width="1600"
+              height="1000"
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
+          </figure>
+        ))}
+      </div>
+      <div class="carousel-controls">
+        <button class="carousel-nav" type="button" data-carousel-prev aria-label="Previous screenshot">
+          Prev
+        </button>
+        <div class="carousel-dots" role="tablist" aria-label="Screenshot navigation">
+          {familyScreenshots.map((_, index) => (
+            <button
+              class="carousel-dot"
+              type="button"
+              role="tab"
+              aria-label={`Go to screenshot ${index + 1}`}
+              aria-selected={index === 0 ? 'true' : 'false'}
+              data-carousel-dot={index}
+            />
+          ))}
+        </div>
+        <button class="carousel-nav" type="button" data-carousel-next aria-label="Next screenshot">
+          Next
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <a
+      href="https://apps.apple.com/us/app/eye-yay-public-domain-player/id6755102519?itscg=30200&itsct=apps_box_badge&mttnsubad=6755102519"
+      style="display: inline-block;"
+    >
+      <img
+        src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1764720000"
+        alt="Download on the App Store"
+        style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;"
+      />
+    </a>
+    <h2>A polished playback experience</h2>
+    <ul>
+      <li>Clean, uncluttered interface that feels at home on every Apple device</li>
+      <li>Browse, search, and add items to your personal library</li>
+      <li>Smart resume — pick up exactly where you left off</li>
+      <li>Background and Picture-in-Picture playback</li>
+      <li>Automatic next-track advance for serials and playlists</li>
+      <li>
+        Smart grouping keeps duplicate or alternative file versions out of the way, so books,
+        albums, and playlists play in the right order without clutter
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Explore a world of open culture</h2>
+    <ul>
+      <li>Classic radio dramas and narrated stories</li>
+      <li>Historic documentaries and educational films</li>
+      <li>Vintage public-domain movies and newsreels</li>
+      <li>Community music releases and field recordings</li>
+      <li>Podcasts, lectures, and spoken-word collections</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Take it with you</h2>
+    <p>
+      Media can be saved for offline playback, so you can keep listening or watching even without
+      an internet connection. Offline saving continues in the background, and your progress is
+      preserved automatically.
+    </p>
+  </section>
+
+  <section>
+    <h2>Supporter Edition</h2>
+    <p>Unlock a set of power-user features with a one-time upgrade:</p>
+    <ul>
+      <li>Sleep Timer — automatically stop playback after a set time</li>
+      <li>Create Personal Bookmarks — mark your own moments in any recording</li>
+      <li>Manage Offline Storage — see what’s using space and clear it easily</li>
+      <li>Blacklist Topics — hide subjects you’re not interested in to keep searches focused</li>
+    </ul>
+  </section>
+
+  <section class="section-bottom">
+    <h2>Thoughtfully designed for Apple platforms</h2>
+    <p>
+      Eye Yay works seamlessly across iPhone, iPad, Mac and Apple TV. It’s optimised for the
+      latest system features and keeps your media organised and ready to play.
+    </p>
+    <a
+      href="https://apps.apple.com/us/app/eye-yay-public-domain-player/id6755102519?itscg=30200&itsct=apps_box_badge&mttnsubad=6755102519"
+      style="display: inline-block;"
+    >
+      <img
+        src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1764720000"
+        alt="Download on the App Store"
+        style="width: 246px; height: 82px; vertical-align: middle; object-fit: contain;"
+      />
+    </a>
+    <p class="platforms" style="margin-top: 0.75rem; font-size: 0.92rem;">
+      <a href="/eye-yay-privacy" aria-label="View Eye Yay privacy policy">Privacy Policy</a>
+    </p>
+  </section>
+
+  <script is:inline>
+    document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+      const track = carousel.querySelector('[data-carousel-track]');
+      const slides = Array.from(carousel.querySelectorAll('[data-carousel-slide]'));
+      const prev = carousel.querySelector('[data-carousel-prev]');
+      const next = carousel.querySelector('[data-carousel-next]');
+      const dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
+
+      if (!track || slides.length === 0 || !prev || !next) return;
+
+      let currentIndex = 0;
+
+      const updateDots = () => {
+        dots.forEach((dot, dotIndex) => {
+          dot.setAttribute('aria-selected', dotIndex === currentIndex ? 'true' : 'false');
+        });
+      };
+
+      const goToSlide = (index) => {
+        currentIndex = (index + slides.length) % slides.length;
+        track.scrollTo({
+          left: track.clientWidth * currentIndex,
+          behavior: 'smooth'
+        });
+        updateDots();
+      };
+
+      prev.addEventListener('click', () => goToSlide(currentIndex - 1));
+      next.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+      dots.forEach((dot, dotIndex) => {
+        dot.addEventListener('click', () => goToSlide(dotIndex));
+      });
+
+      track.addEventListener('scroll', () => {
+        const index = Math.round(track.scrollLeft / track.clientWidth);
+        if (index !== currentIndex) {
+          currentIndex = index;
+          updateDots();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        track.scrollTo({ left: track.clientWidth * currentIndex });
+      });
+    });
+  </script>
+</BaseLayout>

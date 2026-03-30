@@ -127,7 +127,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
       : `<div class="thumb-placeholder">🎬</div>`
     }
     <h1>${h(data.name)}</h1>
-    <p class="meta">${count} film${plural} from the Internet Archive</p>
+    <p class="meta">${count} item${plural} from the Internet Archive</p>
     <a href="${appStoreURL}" class="btn">Get Eye Yay</a>
   </div>
 </body>

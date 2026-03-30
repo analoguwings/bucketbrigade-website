@@ -34,9 +34,9 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
   const data: PlaylistRecord = JSON.parse(raw)
   const count = data.identifiers.length
   const firstID = data.identifiers[0] ?? ''
-  const rawThumbURL = firstID ? `https://archive.org/services/img/${firstID}` : ''
-  // Proxy through wsrv.nl to get a consistent 1200px wide image for OG crawlers
-  const thumbURL = rawThumbURL ? `https://wsrv.nl/?url=${encodeURIComponent(rawThumbURL)}&w=1200&h=630&fit=cover&output=jpg` : ''
+  const origin = new URL(request.url).origin
+  // Use the generated OG image endpoint which composites text + logo over the thumbnail
+  const thumbURL = `${origin}/api/og/${id}`
   const pageURL = new URL(request.url).href
   const appStoreURL = `https://apps.apple.com/app/id${APP_STORE_ID}`
   const plural = count !== 1 ? 's' : ''
@@ -54,7 +54,9 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
   <!-- Open Graph -->
   <meta property="og:title" content="${h(ogTitle)}">
   <meta property="og:description" content="${h(ogDescription)}">
-  ${thumbURL ? `<meta property="og:image" content="${thumbURL}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">` : ''}
+  <meta property="og:image" content="${thumbURL}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:url" content="${pageURL}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="${h(countLabel)}">
@@ -63,7 +65,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${h(ogTitle)}">
   <meta name="twitter:description" content="${h(ogDescription)}">
-  ${thumbURL ? `<meta name="twitter:image" content="${thumbURL}">` : ''}
+  <meta name="twitter:image" content="${thumbURL}">
 
   <!-- Apple Smart App Banner (shows on iOS Safari for users who don't have the app) -->
   <meta name="apple-itunes-app" content="app-id=${APP_STORE_ID}, app-argument=${pageURL}">

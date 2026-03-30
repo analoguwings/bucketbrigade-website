@@ -4,3 +4,7 @@
 
 /apple-app-site-association
   Content-Type: application/json
+
+# Allow OG image debugger tools (opengraph.xyz, Facebook, etc.) to fetch cross-origin
+/api/og/*
+  Access-Control-Allow-Origin: *

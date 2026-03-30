@@ -1,4 +1,4 @@
-import { ImageResponse } from '@vercel/og'
+import { ImageResponse } from '@cf-wasm/og'
 import React from 'react'
 
 interface Env {

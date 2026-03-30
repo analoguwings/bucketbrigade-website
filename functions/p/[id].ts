@@ -40,7 +40,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
   const pageURL = new URL(request.url).href
   const appStoreURL = `https://apps.apple.com/app/id${APP_STORE_ID}`
   const plural = count !== 1 ? 's' : ''
-  const ogTitle = `Add this curated playlist to your library`
+  const ogTitle = `Add this curated playlist to your Eye Yay library`
   const ogDescription = `${count} item${plural} from the Internet Archive, shared with Eye Yay`
   const countLabel = `${count} item${plural}`
 

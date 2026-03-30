@@ -3,7 +3,7 @@
 // - App users: iOS intercepts as a Universal Link and opens the app directly.
 // - Non-app users: lands here, sees playlist info and an App Store link.
 
-const APP_STORE_ID = 'YOUR_APP_STORE_ID' // Replace with numeric App Store ID once live
+const APP_STORE_ID = '6755102519' // Replace with numeric App Store ID once live
 
 interface Env {
   PLAYLISTS: KVNamespace

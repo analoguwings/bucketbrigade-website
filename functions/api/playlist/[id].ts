@@ -5,7 +5,10 @@ interface Env {
   PLAYLISTS: KVNamespace
 }
 
-export const onRequestGet: PagesFunction<Env> = async ({ params, env }) => {
+export const onRequest: PagesFunction<Env> = async ({ params, env, request }) => {
+  if (request.method !== 'GET') {
+    return new Response('Method not allowed', { status: 405 })
+  }
   const id = params.id as string
 
   if (!id || !/^[a-f0-9]{10}$/.test(id)) {

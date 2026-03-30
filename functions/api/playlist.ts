@@ -10,7 +10,10 @@ interface CreateBody {
   identifiers?: string[]
 }
 
-export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
+export const onRequest: PagesFunction<Env> = async ({ request, env }) => {
+  if (request.method !== 'POST') {
+    return new Response('Method not allowed', { status: 405 })
+  }
   let body: CreateBody
   try {
     body = await request.json()

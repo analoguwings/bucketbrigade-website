@@ -35,8 +35,8 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
   const count = data.identifiers.length
   const firstID = data.identifiers[0] ?? ''
   const origin = new URL(request.url).origin
-  // Use the generated OG image endpoint which composites text + logo over the thumbnail
-  const thumbURL = `${origin}/api/og/${id}`
+  const ogImageURL = `${origin}/api/og/${id}`
+  const pageThumbURL = firstID ? `https://archive.org/services/img/${firstID}` : ''
   const pageURL = new URL(request.url).href
   const appStoreURL = `https://apps.apple.com/app/id${APP_STORE_ID}`
   const plural = count !== 1 ? 's' : ''
@@ -54,7 +54,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
   <!-- Open Graph -->
   <meta property="og:title" content="${h(ogTitle)}">
   <meta property="og:description" content="${h(ogDescription)}">
-  <meta property="og:image" content="${thumbURL}">
+  <meta property="og:image" content="${ogImageURL}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="${pageURL}">
@@ -65,7 +65,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${h(ogTitle)}">
   <meta name="twitter:description" content="${h(ogDescription)}">
-  <meta name="twitter:image" content="${thumbURL}">
+  <meta name="twitter:image" content="${ogImageURL}">
 
   <!-- Apple Smart App Banner (shows on iOS Safari for users who don't have the app) -->
   <meta name="apple-itunes-app" content="app-id=${APP_STORE_ID}, app-argument=${pageURL}">
@@ -122,8 +122,8 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
 </head>
 <body>
   <div class="card">
-    ${thumbURL
-      ? `<img class="thumb" src="${thumbURL}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'thumb-placeholder',textContent:'🎬'}))">`
+    ${pageThumbURL
+      ? `<img class="thumb" src="${pageThumbURL}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'thumb-placeholder',textContent:'🎬'}))">`
       : `<div class="thumb-placeholder">🎬</div>`
     }
     <h1>${h(data.name)}</h1>

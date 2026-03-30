@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["577WMM8NFM.com.bucketbrigade.EyeYay"],
+        "components": [
+          { "/": "/p/*", "comment": "Playlist share links" }
+        ]
+      }
+    ]
+  }
+}

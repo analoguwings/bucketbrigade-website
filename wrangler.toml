@@ -1,0 +1,18 @@
+# wrangler.toml — used for local development with `wrangler pages dev dist`
+# KV bindings for production must also be set in the Cloudflare Pages dashboard:
+#   Settings → Functions → KV namespace bindings → Variable name: PLAYLISTS
+#
+# First-time setup:
+#   npm install -g wrangler
+#   npx wrangler kv:namespace create PLAYLISTS
+#   npx wrangler kv:namespace create PLAYLISTS --preview
+#   Paste the returned IDs below
+
+name = "bucketbrigade-website"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "dist"
+
+[[kv_namespaces]]
+binding = "PLAYLISTS"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+preview_id = "REPLACE_WITH_KV_PREVIEW_NAMESPACE_ID"

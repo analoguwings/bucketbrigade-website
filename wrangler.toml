@@ -12,7 +12,10 @@ name = "bucketbrigade-website"
 compatibility_date = "2024-09-23"
 pages_build_output_dir = "dist"
 
-[[kv_namespaces]]
-binding = "PLAYLISTS"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
-preview_id = "REPLACE_WITH_KV_PREVIEW_NAMESPACE_ID"
+# KV bindings are configured in the Cloudflare Pages dashboard:
+# Settings → Functions → KV namespace bindings → Variable name: PLAYLISTS
+# Uncomment below for local dev after running `wrangler kv:namespace create PLAYLISTS`
+# [[kv_namespaces]]
+# binding = "PLAYLISTS"
+# id = "REPLACE_WITH_KV_NAMESPACE_ID"
+# preview_id = "REPLACE_WITH_KV_PREVIEW_NAMESPACE_ID"

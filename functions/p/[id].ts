@@ -105,6 +105,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
       justify-content: center;
       font-size: 52px;
     }
+    .app-icon { width: 80px; height: 80px; border-radius: 18px; margin-bottom: 20px; box-shadow: 0 8px 18px rgba(0,0,0,0.12); }
     h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; line-height: 1.25; }
     .meta { color: rgba(0,0,0,0.55); font-size: 15px; margin-bottom: 28px; }
     .app-store-badge { display: inline-block; }
@@ -123,6 +124,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
 </head>
 <body>
   <div class="card">
+    <img src="https://eyeyay.app/images/eye-yay/200x200bb-75.webp" alt="Eye Yay" class="app-icon">
     ${pageThumbURL
       ? `<img class="thumb" src="${pageThumbURL}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'thumb-placeholder',textContent:'🎬'}))">`
       : `<div class="thumb-placeholder">🎬</div>`

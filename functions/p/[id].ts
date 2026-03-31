@@ -121,6 +121,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
       font-size: 42px;
       line-height: 1;
       letter-spacing: 0.01em;
+      text-transform: uppercase;
       color: #000;
     }
     .app-icon { width: 80px; height: 80px; border-radius: 18px; box-shadow: 0 8px 18px rgba(0,0,0,0.12); }

@@ -153,6 +153,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
     }
     <h1>${h(data.name)}</h1>
     <p class="meta">${count} item${plural} from the Internet Archive</p>
+    <p class="meta">To import this playlist into your library, install Eye Yay, or open this link on a device that has Eye Yay installed.</p>
     <a href="${appStoreURL}" class="app-store-badge">
       <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1764720000" alt="Download on the App Store">
     </a>

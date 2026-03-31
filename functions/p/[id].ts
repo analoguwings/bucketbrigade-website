@@ -70,6 +70,10 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
   <!-- Apple Smart App Banner (shows on iOS Safari for users who don't have the app) -->
   <meta name="apple-itunes-app" content="app-id=${APP_STORE_ID}, app-argument=${pageURL}">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -105,7 +109,21 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
       justify-content: center;
       font-size: 52px;
     }
-    .app-icon { width: 80px; height: 80px; border-radius: 18px; margin-bottom: 20px; box-shadow: 0 8px 18px rgba(0,0,0,0.12); }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .brand-name {
+      font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+      font-size: 42px;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      color: #000;
+    }
+    .app-icon { width: 80px; height: 80px; border-radius: 18px; box-shadow: 0 8px 18px rgba(0,0,0,0.12); }
     h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; line-height: 1.25; }
     .meta { color: rgba(0,0,0,0.55); font-size: 15px; margin-bottom: 28px; }
     .app-store-badge { display: inline-block; }
@@ -124,7 +142,10 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
 </head>
 <body>
   <div class="card">
-    <img src="https://eyeyay.app/images/eye-yay/200x200bb-75.webp" alt="Eye Yay" class="app-icon">
+    <div class="brand-row">
+      <span class="brand-name">Eye Yay</span>
+      <img src="https://eyeyay.app/images/eye-yay/200x200bb-75.webp" alt="Eye Yay" class="app-icon">
+    </div>
     ${pageThumbURL
       ? `<img class="thumb" src="${pageThumbURL}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'thumb-placeholder',textContent:'🎬'}))">`
       : `<div class="thumb-placeholder">🎬</div>`

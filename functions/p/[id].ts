@@ -74,8 +74,8 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #0c0c0c;
-      color: #fff;
+      background: hsl(30 100% 98.04%);
+      color: #000;
       min-height: 100dvh;
       display: flex;
       align-items: center;
@@ -98,7 +98,7 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
       width: 140px;
       height: 140px;
       border-radius: 16px;
-      background: #1e1e1e;
+      background: hsl(33 100% 95.5%);
       margin: 0 auto 24px;
       display: flex;
       align-items: center;
@@ -106,18 +106,19 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
       font-size: 52px;
     }
     h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; line-height: 1.25; }
-    .meta { color: #888; font-size: 15px; margin-bottom: 32px; }
-    .btn {
-      display: inline-block;
-      background: #fff;
-      color: #000;
-      padding: 14px 32px;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 16px;
-      text-decoration: none;
+    .meta { color: rgba(0,0,0,0.55); font-size: 15px; margin-bottom: 28px; }
+    .app-store-badge { display: inline-block; }
+    .app-store-badge img { width: 180px; height: 60px; object-fit: contain; vertical-align: middle; }
+    .learn-more {
+      display: block;
+      margin-top: 16px;
+      font-size: 14px;
+      color: rgba(0,0,0,0.55);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
     }
-    .btn:active { opacity: 0.8; }
+    .learn-more:hover { color: #000; }
   </style>
 </head>
 <body>
@@ -128,7 +129,10 @@ export const onRequest: PagesFunction<Env> = async ({ params, env, request }) =>
     }
     <h1>${h(data.name)}</h1>
     <p class="meta">${count} item${plural} from the Internet Archive</p>
-    <a href="${appStoreURL}" class="btn">Get Eye Yay</a>
+    <a href="${appStoreURL}" class="app-store-badge">
+      <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1764720000" alt="Download on the App Store">
+    </a>
+    <a href="https://eyeyay.app/eye-yay/" class="learn-more">Learn more</a>
   </div>
 </body>
 </html>`

@@ -8,7 +8,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
   <section class="hero hero-compact">
     <h1>Synthgarage Privacy Policy</h1>
-    <p class="platforms">Effective Date: 11 September 2026</p>
+    <p class="platforms">Effective Date: 29 September 2026</p>
     <p class="platforms">Developer: Bucket Brigade (New Zealand)</p>
     <p class="lead">
       Synthgarage is a synthesiser patch librarian. It keeps your sound library on your own
@@ -18,12 +18,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       There is no Synthgarage account, no advertising, and no tracking across apps or websites.
       Nothing is sold or shared with data brokers. Where your library leaves your device, it goes
       to a service <strong>you</strong> signed into — Apple’s iCloud, or a cloud storage account
-      you connect yourself — under your own agreement with that provider.
+      you connect yourself — or to someone you choose to send it to, under your own agreement with
+      that provider.
     </p>
     <p>
       The one thing the app sends on its own behalf is anonymised telemetry, so we can tell which
-      features are used and where the app fails. It is not linked to your identity, and it can be
-      turned off.
+      features are used and where the app fails. It is not linked to your identity, and it never
+      includes your content unless you turn that on.
     </p>
   </section>
 
@@ -44,10 +45,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       and folder names they came from. Stored locally on the device.
     </p>
     <p>
-      If you are signed into iCloud and have iCloud Drive enabled, this library is mirrored through
-      Apple CloudKit to your own private iCloud database, so it appears on your other devices. That
+      If you are signed into iCloud and iCloud is turned on for Synthgarage, this library is
+      mirrored through Apple CloudKit to your own private iCloud database, so it appears on your
+      other devices. That includes the record of which in-app purchases you have unlocked. That
       database belongs to your Apple Account. Bucket Brigade cannot read it, and has no
       administrative access to it.
+    </p>
+    <p>
+      A small device list is also kept in your iCloud (key-value storage): a random identifier per
+      device, its platform, and the day it was last used. It lets the app count how many of your
+      devices use it. The identifiers are never sent to us; only the count is, as part of
+      telemetry.
     </p>
 
     <h3>Instrument and MIDI settings — on your device</h3>
@@ -63,16 +71,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       on the device and is shown only inside the app. It is not transmitted anywhere.
     </p>
 
+    <h3>Handoff between your devices</h3>
+    <p>
+      If Handoff is turned on, the app lets Apple pass what you are looking at — the current screen,
+      the selected synthesiser, collection or sound, and any search text or tag filter — to your
+      other devices signed into the same Apple Account, so you can pick up where you left off.
+      Apple carries this between your devices; it does not reach Bucket Brigade.
+    </p>
+
     <h3>Purchases</h3>
     <p>
       Additional synthesiser support is sold as one-time in-app purchases. Purchases are processed
       by Apple, and payment details never reach the app or Bucket Brigade. The app receives from
       Apple’s StoreKit only the fact that a purchase is valid, and records which items are
-      unlocked.
+      unlocked in your library (and so in your iCloud, as above).
     </p>
     <p>
       Apple’s handling of your purchase is governed by
       <a href="https://www.apple.com/legal/privacy/">Apple’s privacy policy</a>.
+    </p>
+
+    <h3>Sharing a collection</h3>
+    <p>
+      You can share a collection as a .sgcollection file, sent however you like — AirDrop, email, a
+      forum post. The file contains the collection’s name and comment, its sounds and their names,
+      any comments on those sounds, and an author name <strong>only if you enter one</strong> (it is
+      never filled in from your device or account name). Nothing goes through Bucket Brigade. Once
+      sent, the file is in the recipient’s hands, and they can pass it on.
     </p>
   </section>
 
@@ -96,15 +121,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <strong>Dropbox</strong> — files.content.write, app-folder scoped: write only, inside
         Apps/SynthGarage
       </li>
-      <li><strong>Google Drive</strong> — drive.file: only files and folders this app creates</li>
-      <li><strong>OneDrive</strong> — Files.ReadWrite.AppFolder: only the app’s own folder</li>
       <li><strong>Any other folder</strong> — a folder you choose: that folder only</li>
     </ul>
+    <p>
+      Google Drive and OneDrive are not offered in the current version. If they are added, this
+      policy will be updated first to describe the access they request.
+    </p>
     <p>Two things follow, and both are deliberate:</p>
     <ul>
       <li>
         <strong>The permissions requested are the narrowest each service offers.</strong>
-        Synthgarage cannot read the rest of your Dropbox, Drive or OneDrive, and does not ask to.
+        Synthgarage cannot read the rest of your Dropbox, and does not ask to.
       </li>
       <li>
         <strong>The files go from your device to your account.</strong> They do not pass through
@@ -112,17 +139,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </li>
     </ul>
     <p>
-      Sign-in uses OAuth. The resulting access token is stored in your device’s Keychain, is not
-      included in device backups shared with us, and is deliberately not synchronised between your
-      devices. Disconnecting in Settings ▸ Backup deletes it from the device; revoking access at
-      the provider ends it entirely.
+      Sign-in uses OAuth. The resulting access token is stored in your device’s Keychain. It is
+      deliberately not synchronised to your other devices through iCloud Keychain, though it may be
+      included in your device’s own encrypted backup. The app also stores the connected account’s
+      email address on the device, so Settings can show which account is connected. Disconnecting
+      in Settings ▸ Backup deletes the token from the device; revoking access at the provider ends
+      it entirely.
     </p>
     <p>
       Your use of those services is governed by their own policies:
       <a href="https://www.apple.com/legal/privacy/">Apple</a> ·
-      <a href="https://www.dropbox.com/privacy">Dropbox</a> ·
-      <a href="https://policies.google.com/privacy">Google</a> ·
-      <a href="https://privacy.microsoft.com/privacystatement">Microsoft</a>
+      <a href="https://www.dropbox.com/privacy">Dropbox</a>
     </p>
   </section>
 
@@ -130,14 +157,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2>Anonymised telemetry</h2>
     <p>
       Synthgarage sends anonymised telemetry through TelemetryDeck, a privacy-focused analytics
-      service, so we can see which features are used and where the app fails. It is not linked to
-      your identity: TelemetryDeck receives no persistent device identifier, signals are not used
-      to build a profile, are not combined with data from other sources, and are never used for
-      advertising.
+      service, so we can see which features are used and where the app fails — for example imports,
+      sends, parse failures, iCloud sync activity, and library sizes in broad ranges. Telemetry is
+      always on. It is not linked to your identity:
     </p>
+    <ul>
+      <li>
+        TelemetryDeck receives no advertising identifier, account or email. It receives a
+        pseudonymous per-install identifier, hashed on your device and again by TelemetryDeck and
+        salted for this app, used only to count users of Synthgarage. It cannot be matched to you
+        or to other apps.
+      </li>
+      <li>TelemetryDeck does not store IP addresses.</li>
+      <li>
+        Signals are not used to build a profile, are not combined with data from other sources, and
+        are never used for advertising.
+      </li>
+    </ul>
     <p>
-      Telemetry carries usage and diagnostic information, not your content. It can be turned off in
-      the app’s settings, which stops any further signals immediately.
+      <strong>Your content is not included unless you turn it on.</strong> In Settings ▸ General you
+      can choose to send collection names and copies of sounds that failed to import or send (the
+      SysEx message, which includes that sound’s name), to help us fix bugs. This is
+      <strong>off by default</strong>. When it is on, these are sent separately from all other
+      signals, with nothing that links them to you, your device or your other activity. Turning it
+      off stops them at once, including any not yet sent.
+    </p>
+
+    <h3>Crash reports from Apple</h3>
+    <p>
+      If you have chosen to share analytics with app developers in your device settings, Apple may
+      pass crash reports to us. That is governed by Apple’s policy and your device settings.
     </p>
   </section>
 
@@ -159,9 +208,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </li>
     </ul>
     <p>
-      Only two pieces of third-party code in the app communicate over a network: the Dropbox SDK,
-      used solely to sign in to and write to the account you connect, and TelemetryDeck, used
-      solely for the anonymised telemetry described above.
+      The app connects over the network only to: Apple (iCloud, Handoff, in-app purchases), Dropbox
+      (only if you connect it, to sign in and write to your account), and TelemetryDeck (the
+      telemetry above).
     </p>
   </section>
 
@@ -170,20 +219,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <p>
       For users in the UK and EU: your library is held on your own device, in your own iCloud, and
       in cloud storage accounts you connect, so Bucket Brigade does not process it at all. For the
-      limited processing that remains, our bases are performance of a contract — validating and
-      restoring in-app purchases, which Apple carries out — and legitimate interests in
-      understanding and improving the app, for anonymised telemetry, which you can switch off at
-      any time.
+      processing that remains:
     </p>
+    <ul>
+      <li>
+        <strong>Performance of a contract:</strong> validating and restoring in-app purchases,
+        which Apple carries out.
+      </li>
+      <li>
+        <strong>Legitimate interests</strong> in understanding and improving the app: anonymised
+        usage telemetry. You can object by contacting us; because it is anonymised we cannot single
+        out your signals, so we would ask you not to use the app if you do not accept it.
+      </li>
+      <li>
+        <strong>Consent:</strong> the collection names and failing sounds you choose to send (off
+        until you turn it on, and withdrawn by turning it off).
+      </li>
+    </ul>
   </section>
 
   <section>
     <h2>Children</h2>
     <p>
-      Synthgarage is not directed at children and does not knowingly collect information from them.
-      It is intended for users aged 16 and over, and we do not knowingly collect personal
-      information from anyone under that age. If you believe a child has provided us with personal
-      information, contact support@synthgarage.com and we will delete it.
+      Synthgarage is not directed at children. It is intended for users aged 16 and over, and we do
+      not knowingly collect personal information from anyone under that age. If you believe a child
+      has provided us with personal information, contact support@synthgarage.com and we will delete
+      it.
     </p>
   </section>
 
@@ -216,8 +277,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         or remove.
       </li>
       <li>
-        <strong>Telemetry:</strong> anonymised, so individual signals cannot be traced back to you
-        and located for deletion. Turning it off stops any further signals immediately.
+        <strong>Shared collections:</strong> a file you have sent is in the recipient’s hands;
+        deleting the collection in the app does not recall it.
+      </li>
+      <li>
+        <strong>Telemetry:</strong> kept by TelemetryDeck for three months, then deleted. It is
+        anonymised, and content you choose to send is unlinked, so individual signals cannot be
+        traced back to you and located for deletion. Turning off content sharing stops it
+        immediately.
       </li>
     </ul>
   </section>
@@ -248,18 +315,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2>International transfers</h2>
     <p>
       Bucket Brigade is based in New Zealand. Because we hold no copy of your library, transfers of
-      your data happen between you and the services you choose — Apple, Dropbox, Google, Microsoft
-      — under those providers’ own terms and safeguards, rather than to us. Anonymised telemetry is
-      processed by TelemetryDeck on our behalf and carries no information that identifies you.
+      your data happen between you and the services you choose — Apple, Dropbox — and the people
+      you share with, under those providers’ own terms and safeguards, rather than to us.
+      Anonymised telemetry is processed by TelemetryDeck on our behalf and carries no information
+      that identifies you.
     </p>
   </section>
 
   <section>
     <h2>Changes</h2>
     <p>
-      If this policy changes materially, the updated version will be posted at
-      https://www.synthgarage.com/synthgarage-privacy with a new effective date, and where the
-      change requires it you will be told in the app.
+      If this policy changes materially, the updated version will be posted with a new effective
+      date, and where the change requires it you will be told in the app.
     </p>
   </section>
 

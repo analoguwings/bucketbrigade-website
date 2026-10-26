@@ -402,6 +402,16 @@ section {
   margin-bottom: 0;
 }
 
+/* Up to three columns, dropping to fewer as the width shrinks. */
+.column-list {
+  columns: 3 14rem;
+  column-gap: var(--space-5);
+}
+
+.column-list > li {
+  break-inside: avoid;
+}
+
 @media (max-width: 820px) {
   .container {
     width: min(var(--container-width), calc(100% - (var(--gutter-mobile) * 2)));

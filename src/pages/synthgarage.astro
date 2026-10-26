@@ -131,7 +131,7 @@ const unlockSynths = [
   <section>
     <h2>Supported synths</h2>
     <h3>Free</h3>
-    <ul>
+    <ul class="column-list">
       {freeSynths.map(({ maker, models }) => (
         <li>
           <strong>{maker}</strong>
@@ -142,7 +142,7 @@ const unlockSynths = [
       ))}
     </ul>
     <h3>One-time unlock</h3>
-    <ul>
+    <ul class="column-list">
       {unlockSynths.map(({ maker, models }) => (
         <li>
           <strong>{maker}</strong>

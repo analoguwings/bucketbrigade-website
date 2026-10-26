@@ -25,24 +25,71 @@ const screenshots = [
   }
 ];
 
-// Released synths from SynthGarage2024/docs/hardware-evidence.md. Beta synths are left out.
-// The Volca FM, Volca FM 2 and FM-1 aren't in the register; they always appear.
+// Released synths from SynthGarage2024/docs/hardware-evidence.md, each followed by the "Other
+// models" its definition also covers. Beta synths are left out. The Volca FM, Volca FM 2 and FM-1
+// are listed under the DX7 in the register; they get their own maker entries here.
 const freeSynths = [
-  { maker: 'Arturia', models: ['MicroFreak'] },
-  { maker: 'Behringer', models: ['JT-4000', 'Pro VS Mini', 'UB-1 micro'] },
+  { maker: 'Arturia', models: ['MicroFreak', 'MicroFreak Vocoder Edition', 'MicroFreak Stellar'] },
+  { maker: 'Behringer', models: ['JT-4000', 'JT-4000M', 'Pro VS Mini', 'UB-1 micro'] },
   { maker: 'Korg', models: ['Monologue', 'Volca FM', 'Volca FM 2'] },
   { maker: 'M-Vave', models: ['FM-1'] },
-  { maker: 'Roland', models: ['D-50', 'MT-32'] },
-  { maker: 'Yamaha', models: ['DX7', 'TX81Z'] }
+  {
+    maker: 'Roland',
+    models: [
+      'D-50',
+      'D-550',
+      'MT-32',
+      'CM-32L',
+      'CM-64',
+      'LAPC-I',
+      'D-5',
+      'D-10',
+      'D-20',
+      'D-110',
+      'GR-50'
+    ]
+  },
+  {
+    maker: 'Yamaha',
+    models: [
+      'DX7',
+      'DX7IID',
+      'DX7IIFD',
+      'TX7',
+      'TX802',
+      'TX816',
+      'TX81Z',
+      'DX11',
+      'DX21',
+      'DX27',
+      'DX100',
+      'V50'
+    ]
+  }
 ];
 
 const unlockSynths = [
-  { maker: 'Access', models: ['Virus', 'Virus TI'] },
+  {
+    maker: 'Access',
+    models: [
+      'Virus',
+      'Virus A',
+      'Virus B',
+      'Virus C',
+      'Virus TI',
+      'Virus TI2',
+      'Virus TI Polar',
+      'Virus TI Snow'
+    ]
+  },
   { maker: 'Oberheim', models: ['Matrix-1000', 'Matrix-6 / 6R'] },
-  { maker: 'Roland', models: ['JP-8000', 'JP-8080', 'Juno-106', 'JX-8P', 'Super JX'] },
-  { maker: 'Sequential', models: ['Mopho', 'Mopho Keys', 'Mopho x4', 'Tetra'] },
-  { maker: 'Studio Electronics', models: ['Omega'] },
-  { maker: 'Waldorf', models: ['Microwave XT'] }
+  {
+    maker: 'Roland',
+    models: ['JP-8000', 'JP-8080', 'Juno-106', 'MKS-7', 'JX-8P', 'Super JX', 'JX-10', 'MKS-70']
+  },
+  { maker: 'Sequential', models: ['Mopho', 'Mopho Keys', 'Mopho SE', 'Mopho x4', 'Tetra'] },
+  { maker: 'Studio Electronics', models: ['Omega', 'Omega 8', 'Omega CODE'] },
+  { maker: 'Waldorf', models: ['Microwave XT', 'Microwave XTk', 'Microwave II'] }
 ];
 ---
 
@@ -86,13 +133,23 @@ const unlockSynths = [
     <h3>Free</h3>
     <ul>
       {freeSynths.map(({ maker, models }) => (
-        <li><strong>{maker}</strong> — {models.join(', ')}</li>
+        <li>
+          <strong>{maker}</strong>
+          <ul>
+            {models.map((model) => <li>{model}</li>)}
+          </ul>
+        </li>
       ))}
     </ul>
     <h3>One-time unlock</h3>
     <ul>
       {unlockSynths.map(({ maker, models }) => (
-        <li><strong>{maker}</strong> — {models.join(', ')}</li>
+        <li>
+          <strong>{maker}</strong>
+          <ul>
+            {models.map((model) => <li>{model}</li>)}
+          </ul>
+        </li>
       ))}
     </ul>
   </section>

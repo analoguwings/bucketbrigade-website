@@ -24,6 +24,23 @@ const screenshots = [
     alt: 'Synthgarage Randomise sheet generating variations of a patch that match chosen tags'
   }
 ];
+
+// Released synths from SynthGarage2024/docs/hardware-evidence.md. Beta synths are left out.
+const supportedSynths = [
+  { maker: 'Access', models: ['Virus', 'Virus TI'] },
+  { maker: 'Arturia', models: ['MicroFreak (free)'] },
+  { maker: 'Behringer', models: ['JT-4000 (free)', 'Pro VS Mini (free)', 'UB-1 micro (free)'] },
+  { maker: 'Korg', models: ['Monologue (free)'] },
+  { maker: 'Oberheim', models: ['Matrix-1000', 'Matrix-6 / 6R'] },
+  {
+    maker: 'Roland',
+    models: ['D-50 (free)', 'JP-8000', 'JP-8080', 'Juno-106', 'JX-8P', 'MT-32 (free)', 'Super JX']
+  },
+  { maker: 'Sequential', models: ['Mopho', 'Mopho Keys', 'Mopho x4', 'Tetra'] },
+  { maker: 'Studio Electronics', models: ['Omega'] },
+  { maker: 'Waldorf', models: ['Microwave XT'] },
+  { maker: 'Yamaha', models: ['DX7 (free)', 'TX81Z (free)'] }
+];
 ---
 
 <BaseLayout
@@ -59,5 +76,15 @@ const screenshots = [
 
   <section aria-label="Synthgarage screenshots">
     <Carousel screenshots={screenshots} width={1280} height={675} />
+  </section>
+
+  <section>
+    <h2>Supported synths</h2>
+    <p>Synths marked free are included. The rest are unlocked with an in-app purchase.</p>
+    <ul>
+      {supportedSynths.map(({ maker, models }) => (
+        <li><strong>{maker}</strong> — {models.join(', ')}</li>
+      ))}
+    </ul>
   </section>
 </BaseLayout>

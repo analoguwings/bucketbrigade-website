@@ -26,20 +26,21 @@ const screenshots = [
 ];
 
 // Released synths from SynthGarage2024/docs/hardware-evidence.md. Beta synths are left out.
-const supportedSynths = [
+const freeSynths = [
+  { maker: 'Arturia', models: ['MicroFreak'] },
+  { maker: 'Behringer', models: ['JT-4000', 'Pro VS Mini', 'UB-1 micro'] },
+  { maker: 'Korg', models: ['Monologue'] },
+  { maker: 'Roland', models: ['D-50', 'MT-32'] },
+  { maker: 'Yamaha', models: ['DX7', 'TX81Z'] }
+];
+
+const unlockSynths = [
   { maker: 'Access', models: ['Virus', 'Virus TI'] },
-  { maker: 'Arturia', models: ['MicroFreak (free)'] },
-  { maker: 'Behringer', models: ['JT-4000 (free)', 'Pro VS Mini (free)', 'UB-1 micro (free)'] },
-  { maker: 'Korg', models: ['Monologue (free)'] },
   { maker: 'Oberheim', models: ['Matrix-1000', 'Matrix-6 / 6R'] },
-  {
-    maker: 'Roland',
-    models: ['D-50 (free)', 'JP-8000', 'JP-8080', 'Juno-106', 'JX-8P', 'MT-32 (free)', 'Super JX']
-  },
+  { maker: 'Roland', models: ['JP-8000', 'JP-8080', 'Juno-106', 'JX-8P', 'Super JX'] },
   { maker: 'Sequential', models: ['Mopho', 'Mopho Keys', 'Mopho x4', 'Tetra'] },
   { maker: 'Studio Electronics', models: ['Omega'] },
-  { maker: 'Waldorf', models: ['Microwave XT'] },
-  { maker: 'Yamaha', models: ['DX7 (free)', 'TX81Z (free)'] }
+  { maker: 'Waldorf', models: ['Microwave XT'] }
 ];
 ---
 
@@ -80,9 +81,15 @@ const supportedSynths = [
 
   <section>
     <h2>Supported synths</h2>
-    <p>Synths marked free are included. The rest are unlocked with an in-app purchase.</p>
+    <h3>Free</h3>
     <ul>
-      {supportedSynths.map(({ maker, models }) => (
+      {freeSynths.map(({ maker, models }) => (
+        <li><strong>{maker}</strong> — {models.join(', ')}</li>
+      ))}
+    </ul>
+    <h3>One-time unlock</h3>
+    <ul>
+      {unlockSynths.map(({ maker, models }) => (
         <li><strong>{maker}</strong> — {models.join(', ')}</li>
       ))}
     </ul>

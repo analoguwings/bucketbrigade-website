@@ -1,5 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Carousel from '../components/Carousel.astro';
+
+const screenshots = [
+  {
+    src: '/images/synthgarage/screenshots/1-find.png',
+    alt: 'Synthgarage on Mac: a filtered list of Yamaha DX7 patches beside the selected patch\'s algorithm diagram and operator settings'
+  },
+  {
+    src: '/images/synthgarage/screenshots/2-organise.png',
+    alt: 'Synthgarage Organise view: the DX7 library alongside custom lists for a live show and favourite pads'
+  },
+  {
+    src: '/images/synthgarage/screenshots/3-connect.png',
+    alt: 'Synthgarage connection guide showing how to connect a Behringer Pro VS Mini to a Mac over USB-C'
+  },
+  {
+    src: '/images/synthgarage/screenshots/4-convert.png',
+    alt: 'Synthgarage conversion estimate: 88% of a UB-1 micro patch will carry across to a JT-4000'
+  },
+  {
+    src: '/images/synthgarage/screenshots/5-randomise.png',
+    alt: 'Synthgarage Randomise sheet generating variations of a patch that match chosen tags'
+  }
+];
 ---
 
 <BaseLayout
@@ -33,5 +57,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       &middot;
       <a href="/synthgarage-terms" aria-label="View Synthgarage terms of service">Terms of Service</a>
     </p>
+  </section>
+
+  <section aria-label="Synthgarage screenshots">
+    <Carousel screenshots={screenshots} width={1280} height={675} />
   </section>
 </BaseLayout>
